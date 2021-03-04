@@ -22,28 +22,8 @@ class Professional
 
     
 }
-class Movie {
 
-    constructor (title, releaseYear,nationality, genre, foto)
-    {
-        this.title = title;
-        this.releaseYear = releaseYear;
-        this.nationality = nationality;
-        this.genre = genre;
-        this.foto = foto
-    }
-    printMovie()
-    {
-        let datos;
 
-        for (let i = 0; i<this.actors.length; i++)
-        {
-            datos.push(this.actors[i].printProfessional());
-        }
-        return `${this.title},${this.releaseYear},${datos},${this.nationality},${this.director.printProfessional()},${this.writer.printProfessional()},${this.language},${this.platform},${this.isMCU},${this.mainCharacterName},${this.producer},${this.distributor},${this.genre}`
-    }
-
-}
 // Crear objetos profesional
 let pro1 = new Professional ("pike",17,"male",80,178,"brown","brown","caucasic",false,"spanish",0,"actor","https://im-media.voltron.voanews.com/Drupal/02live-246/styles/sourced/s3/2019-08/C975CDD7-2C9F-4928-BED8-C412E3F68B20.jpg?itok=vesfvqKB");
  let pro2 = new Professional ("hanna",37,"female",60,170,"black","green","caucasic",false,"greek",2,"actress","https://los40es00.epimg.net/los40/imagenes/2018/10/09/cinetv/1539080612_321993_1539080975_noticia_normal.jpg");
@@ -56,10 +36,6 @@ let pro1 = new Professional ("pike",17,"male",80,178,"brown","brown","caucasic",
  
  // Crear Peliculas
  
- let peli1 = new Movie ("PasuYRodri",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU");
- let peli2 = new Movie ("adios", 1990,"horror", "spanish","https://lamanodelextranjero.files.wordpress.com/2015/03/cartel-americano-de-hello-dolly.jpg")
- let peli3 = new Movie ("hola", 2018,"action", "french","http://es.web.img2.acsta.net/medias/nmedia/18/95/65/62/20420898.jpg")
- let peli4 = new Movie ("Gladiator", 1995, "american", "action","https://pics.filmaffinity.com/Gladiator-368149580-large.jpg")
 
 
 let arrProf = [pro1,pro2,pro3,pro4,pro5]
@@ -185,19 +161,22 @@ app.post("/profesionales",
 
 function(req,res){
     let respuesta;
-    let id = req.body.id
-        if(arrProf!=null){
+    let id = req.body.id;
+        if(arrProf[id]!=null){
             arrProf.splice(id,1)
             
 
-            respuesta={error:false, codigo:200, mensaje:'Usuario borrado',resultado:arrProf[id]}
+            respuesta={error:false, codigo:200, mensaje:'Usuario borrado'}
 
         }else{
-            respuesta = {error: true, codigo: 200, mensaje:"El usuario no existe",resultado: arrProf}
+            respuesta = {error: true, codigo: 200, mensaje:"El usuario no existe"}
         }
     
     res.send(respuesta)
 }
 );
 
-app.listen(3001);
+app.listen(3000);
+
+
+module.exports={Professional}
