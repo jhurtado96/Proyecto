@@ -69,13 +69,13 @@ let pro1 = new Professional ("pike",17,"male",80,178,"brown","brown","caucasic",
  let pro9 = new Professional ("james",42,"male",80,183,"black","blue","caucasic",false,"bosnian",0,"actor", "https://aws.revistavanityfair.es/prod/designs/v1/assets/785x589/190350.png");
  
  // Crear Peliculas
- let peli1 = new Movie ("PascuYRodriYJavi",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro1,pro2,pro3],pro4,pro7,"Spanish","netflix",true,"Asterix");
-let peli2 = new Movie ("Just chill",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro4,pro7,pro7],pro4,pro7,"Spanish","netflix",true,"Asterix");
-let peli3 = new Movie ("Jorge esto funciona",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro2,pro2,pro2],pro4,pro7,"Spanish","netflix",true,"Asterix");
+ let peli1 = new Movie ("PascuYRodriYJavi",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro1,pro2,pro3],pro3,pro4,"Spanish","netflix",true,"Asterix");
+let peli2 = new Movie ("Just chill",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro4,pro7,pro7],pro2,pro1,"Spanish","netflix",true,"Asterix");
+let peli3 = new Movie ("Jorge esto funciona",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro2,pro1,pro2],pro4,pro7,"Spanish","netflix",true,"Asterix");
 let peli4 = new Movie ("HOLIWI",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro3,pro3,pro3],pro4,pro7,"Spanish","netflix",true,"Asterix");
 let peli6 = new Movie ("perfect",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro7,pro4,pro1],pro4,pro7,"Spanish","netflix",true,"Asterix");
 let peli5=null
-
+let peliculita = null
 
 let arrProf = [pro1,pro2,pro3,pro4,pro5]
 let arrPelis = [peli1,peli2,peli3]
@@ -144,4 +144,121 @@ function (req,res)
         
 } 
 )
+app.get("/peliculas/director",
+function (req,res) 
+{
+    let respuesta;
+    if (arrPelis.director==null) {
+        respuesta={error:false, codigo:200, mensaje:'No hay directores'}
+    }
+    
+        
+    
+    if(req.query.id)        
+    {
+        id = req.query.id
+        res.send(arrPelis[id].director);
+        respuesta = arrPelis[id].director;
+    }else{
+        respuesta=arrPelis[id]
+        
+    }
+    res.send(respuesta); 
+    
+    
+        
+} 
+)
+
+app.get("/peliculas/guionista",
+function (req,res) 
+{
+    let respuesta;
+    if (arrPelis.guionista==null) {
+        respuesta={error:false, codigo:200, mensaje:'No hay guionista'}
+    }
+    
+        
+    
+    if(req.query.id)        
+    {
+        id = req.query.id
+        res.send(arrPelis[id].guionista);
+        respuesta = arrPelis[id].guionista;
+    }else{
+        respuesta=arrPelis[id]
+        
+    }
+    res.send(respuesta); 
+    
+    
+        
+} 
+)
+app.post("/peliculas",
+        
+        function(req,res){
+            let respuesta;
+            
+                if(peliculita===null){
+                        peliculita = new Movie(
+                            req.body.title,
+                            req.body.releaseYear,
+                            req.body.nationality,
+                            req.body.genre,
+                            req.body.foto,
+                            req.body.actors,
+                            req.body.director,
+                            req.body.guionista,
+                            req.body.languaje,
+                            req.body.plataform,
+                            req.body.isMCU,
+                            req.body.mainCharacterName
+                            
+                            
+                            )
+                        arrPelis.push(peliculita)
+                    
+                    respuesta={error:false, codigo:200, mensaje:'Pelicula creada',resultado:peliculita}
+                    
+                }else{
+                    respuesta = {error: true, codigo: 200, mensaje:"La peli ya existe",resultado:peliculita}
+                }
+            
+            res.send(respuesta)
+        }
+ );
+
+ app.post("/peliculas/actor",
+        
+ function(req,res){
+     let respuesta;
+     let id = req.body.id
+         if(arrPelis[id].actors!=null){
+             
+             arrPelis[id].actors.push(
+                new Professional(req.body.name,
+                    req.body.genre,
+                    req.body.weight,
+                    req.body.height,
+                    req.body.hairColor,
+                    req.body.eyeColor,
+                    req.body.race,
+                    req.body.isRetired,
+                    req.body.nationality,
+                    req.body.oscarsNumber,
+                    req.body.profession,
+                    req.body.foto)
+             )    
+             
+             respuesta={error:false, codigo:200, mensaje:'actor metido',resultado:peliculita}
+             
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"el id no existe",resultado:peliculita}
+         }
+     
+     res.send(respuesta)
+ }
+);
+
 app.listen(3000);
