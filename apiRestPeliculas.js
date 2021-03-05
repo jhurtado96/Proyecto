@@ -53,6 +53,9 @@ class Movie {
 
 }
 
+// Peliculas
+
+
 
 
 // Crear objetos profesional
@@ -66,147 +69,79 @@ let pro1 = new Professional ("pike",17,"male",80,178,"brown","brown","caucasic",
  let pro9 = new Professional ("james",42,"male",80,183,"black","blue","caucasic",false,"bosnian",0,"actor", "https://aws.revistavanityfair.es/prod/designs/v1/assets/785x589/190350.png");
  
  // Crear Peliculas
- 
+ let peli1 = new Movie ("PascuYRodriYJavi",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro1,pro2,pro3],pro4,pro7,"Spanish","netflix",true,"Asterix");
+let peli2 = new Movie ("Just chill",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro4,pro7,pro7],pro4,pro7,"Spanish","netflix",true,"Asterix");
+let peli3 = new Movie ("Jorge esto funciona",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro2,pro2,pro2],pro4,pro7,"Spanish","netflix",true,"Asterix");
+let peli4 = new Movie ("HOLIWI",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro3,pro3,pro3],pro4,pro7,"Spanish","netflix",true,"Asterix");
+let peli6 = new Movie ("perfect",2021,"Spain","horror","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyKOXBMuc5pz3_26RoL9o9PPBMK1uT72XVg&usqp=CAU",[pro7,pro4,pro1],pro4,pro7,"Spanish","netflix",true,"Asterix");
+let peli5=null
 
 
 let arrProf = [pro1,pro2,pro3,pro4,pro5]
+let arrPelis = [peli1,peli2,peli3]
+
+
+
 
 const express = require("express");
+const { response } = require('express');
  
 const app = express();
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-
-
-
 app.get('/', function (req,res){
     res.send('Hello from server')
 });
 
-app.get("/profesionales",
-    function (request,response) 
-    {
-        let respuesta;
-        if (request.query.id)
-        {
-            id = request.query.id;
-            response.send(arrProf[id]);
-            respuesta = arrProf[id];
-        }
-        else
-        {
-            respuesta = arrProf;
-        }
-        response.send(respuesta);            
-    }
-);
-
-app.post("/profesionales",
-        
-        function(req,res){
-            let respuesta;
-            let pro10=null;
-                if(pro10===null){
-                    pro10 = new Professional(
-                            req.body.name,
-                            req.body.genre,
-                            req.body.weight,
-                            req.body.height,
-                            req.body.hairColor,
-                            req.body.eyeColor,
-                            req.body.race,
-                            req.body.isRetired,
-                            req.body.nationality,
-                            req.body.oscarsNumber,
-                            req.body.profession,
-                            req.body.foto
-                            )
-                        
-                    arrProf.push(pro10)    
-                    respuesta={error:false, codigo:200, mensaje:'Usuario creado',resultado:pro10}
-                    
-                }else{
-                    respuesta = {error: true, codigo: 200, mensaje:"El usuario ya existe",resultado:pro10}
-                }
-            
-            res.send(respuesta)
-        }
- );
-
- app.put("/profesionales",
-
- function(req,res){
-     let respuesta;
-     let id = req.body.id;
-     
-        if(arrProf!=null){
-            if(req.body.name!=null){
-                arrProf[id].name= req.body.name;
-            }
-            if (req.body.genre!=null) {
-                arrProf[id].genre=req.body.genre;
-            }
-            if (req.body.weight!=null) {
-                arrProf[id].weight=req.body.weight;
-            }
-            if (req.body.height!=null) {
-                arrProf[id].height=req.body.height;
-            }
-            if (req.body.hairColor!=null) {
-                arrProf[id].hairColor=req.body.hairColor;
-            }
-            if (req.body.eyeColor!=null) {
-                arrProf[id].eyeColor=req.body.eyeColor;
-            }   
-            if (req.body.race!=null) {
-                arrProf[id].race=req.body.race;
-            }
-            if (req.body.isRetired!=null) {
-                arrProf[id].isRetired=req.body.isRetired;
-            }
-            if (req.body.nationality!=null) {
-                arrProf[id].nationality=req.body.nationality;
-            }
-            if (req.body.oscarsNumber!=null) {
-                arrProf[id].oscarsNumber=req.body.oscarsNumber;
-            }
-            if (req.body.profession!=null) {
-                arrProf[id].profession=req.body.profession;
-            }
-            if (req.body.foto!=null) {
-                arrProf[id].foto=req.body.foto;
-            }      
- 
-             respuesta={error:false, codigo:200, mensaje:'Usuario actualizado',resultado:arrProf[id]}
- 
-         }else{
-             respuesta = {error: true, codigo: 200, mensaje:"El usuario no existe",resultado: arrProf[id]}
-         }
-     
-     res.send(respuesta)
- }
- );
-
- app.delete("/profesionales",
-
-function(req,res){
+app.get("/peliculas",
+function (req,res) 
+{
     let respuesta;
-    let id = req.body.id;
-        if(arrProf[id]!=null){
-            arrProf.splice(id,1)
-            
-
-            respuesta={error:false, codigo:200, mensaje:'Usuario borrado'}
-
-        }else{
-            respuesta = {error: true, codigo: 200, mensaje:"El usuario no existe"}
-        }
+    if (arrPelis==null) {
+        respuesta={error:false, codigo:200, mensaje:'No hay peliculas'}
+    }
     
-    res.send(respuesta)
-}
-);
-
+        
+    
+    if(req.query.id)        
+    {
+        id = req.query.id
+        res.send(arrPelis[id]);
+        respuesta = arrPelis[id];
+    }else{
+        respuesta=arrPelis
+        
+    }
+    res.send(respuesta); 
+    
+    
+        
+} 
+)
+app.get("/peliculas/actor",
+function (req,res) 
+{
+    let respuesta;
+    if (arrPelis.actors==null) {
+        respuesta={error:false, codigo:200, mensaje:'No hay actores'}
+    }
+    
+        
+    
+    if(req.query.id)        
+    {
+        id = req.query.id
+        res.send(arrPelis[id].actors);
+        respuesta = arrPelis[id].actors;
+    }else{
+        respuesta=arrPelis[id]
+        
+    }
+    res.send(respuesta); 
+    
+    
+        
+} 
+)
 app.listen(3000);
-
-
