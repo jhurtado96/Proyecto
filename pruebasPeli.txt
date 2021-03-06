@@ -1,0 +1,88 @@
+//PELICULAS------------------------------------------------------------------------------------------------------------------ 
+
+
+			  {"title":"El gato con botas",
+                           "releaseYear" : 1999,
+                           "nationality" : "Spain",
+                           "genre" : "drama",
+                           "foto" : "lol.jpg",
+                           "actors": [
+                               {
+
+                                    "name": "Hola",
+                                    "genre": "masc",
+                                    "weight": 100,
+                                    "height": 170,
+                                    "hairColor": "brown",
+                                    "eyeColor": "brown",
+                                    "race": "macho",
+                                    "isRetired": true,
+                                    "nationality": "Spanish",
+                                    "oscarsNumber": 4,
+                                    "profession": "celador",
+                                    "foto": "x.jpg"
+                                },
+                                {
+
+                                    "name": "Hola",
+                                    "genre": "masc",
+                                    "weight": 100,
+                                    "height": 170,
+                                    "hairColor": "brown",
+                                    "eyeColor": "brown",
+                                    "race": "macho",
+                                    "isRetired": true,
+                                    "nationality": "Spanish",
+                                    "oscarsNumber": 4,
+                                    "profession": "celador",
+                                    "foto": "x.jpg"
+                                }
+
+                           ],
+                           "director" : {
+
+                                    "name": "Hola",
+                                    "genre": "masc",
+                                    "weight": 100,
+                                    "height": 170,
+                                    "hairColor": "brown",
+                                    "eyeColor": "brown",
+                                    "race": "macho",
+                                    "isRetired": true,
+                                    "nationality": "Spanish",
+                                    "oscarsNumber": 4,
+                                    "profession": "celador",
+                                    "foto": "x.jpg"
+                                },
+                           "guionista" : {
+
+                                    "name": "Hola",
+                                    "genre": "masc",
+                                    "weight": 100,
+                                    "height": 170,
+                                    "hairColor": "brown",
+                                    "eyeColor": "brown",
+                                    "race": "macho",
+                                    "isRetired": true,
+                                    "nationality": "Spanish",
+                                    "oscarsNumber": 4,
+                                    "profession": "celador",
+                                    "foto": "x.jpg"
+                                },
+                           "languaje" : "Spanish",
+                           "plataform" : "Netflix",
+                           "isMCU" : true,
+                           "mainCharacterName" : "Gato"}
+//PROFESIONAL------------------------------------------------------------------------------------------------------------------ 
+				    "name": "Hola",
+                                    "genre": "masc",
+                                    "weight": 100,
+                                    "height": 170,
+                                    "hairColor": "brown",
+                                    "eyeColor": "brown",
+                                    "race": "macho",
+                                    "isRetired": true,
+                                    "nationality": "Spanish",
+                                    "oscarsNumber": 4,
+                                    "profession": "celador",
+                                    "foto": "x.jpg"

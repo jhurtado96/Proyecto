@@ -261,4 +261,357 @@ app.post("/peliculas",
  }
 );
 
+app.post("/peliculas/director",
+        
+function(req,res){
+    let respuesta;
+    let id = req.body.id
+        if(arrPelis[id].director==null){
+            
+            arrPelis[id].director =
+               new Professional(req.body.name,
+                   req.body.genre,
+                   req.body.weight,
+                   req.body.height,
+                   req.body.hairColor,
+                   req.body.eyeColor,
+                   req.body.race,
+                   req.body.isRetired,
+                   req.body.nationality,
+                   req.body.oscarsNumber,
+                   req.body.profession,
+                   req.body.foto)
+                
+            
+            respuesta={error:false, codigo:200, mensaje:'director metido',resultado:arrPelis[id].director}
+            
+        }else{
+            respuesta = {error: true, codigo: 200, mensaje:"ya hay director",resultado:arrPelis[id].director}
+        }
+    
+    res.send(respuesta)
+}
+);
+app.post("/peliculas/guionista",
+        
+function(req,res){
+    let respuesta;
+    let id = req.body.id
+        if(arrPelis[id].guionista==null){
+            
+            arrPelis[id].guionista =
+               new Professional(req.body.name,
+                   req.body.genre,
+                   req.body.weight,
+                   req.body.height,
+                   req.body.hairColor,
+                   req.body.eyeColor,
+                   req.body.race,
+                   req.body.isRetired,
+                   req.body.nationality,
+                   req.body.oscarsNumber,
+                   req.body.profession,
+                   req.body.foto)
+                
+            
+            respuesta={error:false, codigo:200, mensaje:'guionista metido',resultado:arrPelis[id].director}
+            
+        }else{
+            respuesta = {error: true, codigo: 200, mensaje:"ya hay guionista",resultado:arrPelis[id].director}
+        }
+    
+    res.send(respuesta)
+}
+);
+
+app.put("/peliculas",
+
+ function(req,res){
+     let respuesta;
+     let id = req.body.id
+     
+        if(arrPelis[id]!=null){
+            if(req.body.title!=null){
+                arrPelis[id].title= req.body.title;
+            }
+            if (req.body.releaseYear!=null) {
+                arrPelis[id].releaseYear=req.body.releaseYear;
+            }
+            if (req.body.nationality!=null) {
+                arrPelis[id].nationality=req.body.nationality;
+            }
+            if (req.body.genre!=null) {
+                arrPelis[id].genre=req.body.genre;
+            }
+            if (req.body.foto!=null) {
+                arrPelis[id].foto=req.body.foto;
+            }
+            if (req.body.actors!=null) {
+                arrPelis[id].actors=req.body.actors;
+            }
+            if (req.body.director!=null) {
+                arrPelis[id].director=req.body.director;
+            }
+            if (req.body.guionista!=null) {
+                arrPelis[id].guionista=req.body.guionista;
+            }
+            if (req.body.languaje!=null) {
+                arrPelis[id].languaje=req.body.languaje;
+            }
+            if (req.body.plataform!=null) {
+                arrPelis[id].plataform=req.body.plataform;
+            }
+            if (req.body.isMCU!=null) {
+                arrPelis[id].isMCU=req.body.isMCU;
+            }
+            if (req.body.mainCharacterName!=null) {
+                arrPelis[id].mainCharacterName=req.body.mainCharacterName;
+            }
+ 
+             respuesta={error:false, codigo:200, mensaje:'Peli actualizada',resultado:arrPelis[id]}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"No existe la pelicula"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.put("/peliculas/actor",
+
+ function(req,res){
+     let respuesta;
+     let idM = req.body.idM;
+     let idA = req.body.idA
+        if(arrPelis[idM].actors[idA]!=null){
+            
+            if(req.body.name!=null){
+                arrPelis[idM].actors[idA].name= req.body.name;
+            }
+
+            
+            if(req.body.genre!=null){
+                arrPelis[idM].actors[idA].genre= req.body.genre;
+            }
+            if(req.body.weight!=null){
+                arrPelis[idM].actors[idA].weight= req.body.weight;
+            }
+            if(req.body.height!=null){
+                arrPelis[idM].actors[idA].height= req.body.height;
+            }
+            if(req.body.hairColor!=null){
+                arrPelis[idM].actors[idA].hairColor= req.body.hairColor;
+            }
+            if(req.body.eyeColor!=null){
+                arrPelis[idM].actors[idA].eyeColor= req.body.eyeColor;
+            }
+            if(req.body.race!=null){
+                arrPelis[idM].actors[idA].race= req.body.race;
+            }
+            if(req.body.isRetired!=null){
+                arrPelis[idM].actors[idA].isRetired= req.body.isRetired;
+            }
+            if(req.body.oscarsNumber!=null){
+                arrPelis[idM].actors[idA].name= req.body.oscarsNumber;
+            }
+            if(req.body.profession!=null){
+                arrPelis[idM].actors[idA].name= req.body.profession;
+            }
+            if(req.body.foto!=null){
+                arrPelis[idM].actors[idA].foto= req.body.foto;
+            }      
+ 
+             respuesta={error:false, codigo:200, mensaje:'actor actualizado',resultado:arrPelis[idM].actors[idA]}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"El actor no se puede actualizar"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.put("/peliculas/director",
+
+ function(req,res){
+     let respuesta;
+     let id =req.body.id
+        if(arrPelis[id].director!=null){
+            
+            if(req.body.name!=null){
+                arrPelis[id].director.name= req.body.name;
+            }
+
+            
+            if(req.body.genre!=null){
+                arrPelis[id].director.genre= req.body.genre;
+            }
+            if(req.body.weight!=null){
+                arrPelis[id].director.weight= req.body.weight;
+            }
+            if(req.body.height!=null){
+                arrPelis[id].director.height= req.body.height;
+            }
+            if(req.body.hairColor!=null){
+                arrPelis[id].director.hairColor= req.body.hairColor;
+            }
+            if(req.body.eyeColor!=null){
+                arrPelis[id].director.eyeColor= req.body.eyeColor;
+            }
+            if(req.body.race!=null){
+                arrPelis[id].director.race= req.body.race;
+            }
+            if(req.body.isRetired!=null){
+                arrPelis[id].director.isRetired= req.body.isRetired;
+            }
+            if(req.body.oscarsNumber!=null){
+                arrPelis[id].director.name= req.body.oscarsNumber;
+            }
+            if(req.body.profession!=null){
+                arrPelis[id].director.name= req.body.profession;
+            }
+            if(req.body.foto!=null){
+                arrPelis[id].director.foto= req.body.foto;
+            }      
+ 
+             respuesta={error:false, codigo:200, mensaje:'director actualizado',resultado:arrPelis[id].director}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"El director no se puede actualizar"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.put("/peliculas/guionista",
+
+ function(req,res){
+     let respuesta;
+     let id =req.body.id
+        if(arrPelis[id].guionista!=null){
+            
+            if(req.body.name!=null){
+                arrPelis[id].guionista.name= req.body.name;
+            }
+
+            
+            if(req.body.genre!=null){
+                arrPelis[id].guionista.genre= req.body.genre;
+            }
+            if(req.body.weight!=null){
+                arrPelis[id].guionista.weight= req.body.weight;
+            }
+            if(req.body.height!=null){
+                arrPelis[id].guionista.height= req.body.height;
+            }
+            if(req.body.hairColor!=null){
+                arrPelis[id].guionista.hairColor= req.body.hairColor;
+            }
+            if(req.body.eyeColor!=null){
+                arrPelis[id].guionista.eyeColor= req.body.eyeColor;
+            }
+            if(req.body.race!=null){
+                arrPelis[id].guionista.race= req.body.race;
+            }
+            if(req.body.isRetired!=null){
+                arrPelis[id].guionista.isRetired= req.body.isRetired;
+            }
+            if(req.body.oscarsNumber!=null){
+                arrPelis[id].guionista.name= req.body.oscarsNumber;
+            }
+            if(req.body.profession!=null){
+                arrPelis[id].guionista.name= req.body.profession;
+            }
+            if(req.body.foto!=null){
+                arrPelis[id].guionista.foto= req.body.foto;
+            }      
+ 
+             respuesta={error:false, codigo:200, mensaje:'guionista actualizado',resultado:arrPelis[id].director}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"El guionista no se puede actualizar"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.delete("/peliculas",
+
+ function(req,res){
+     let respuesta;
+     let id = req.body.id;
+         if(arrPelis[id]!=null){
+             arrPelis.splice([id],1)
+             
+ 
+             respuesta={error:false, codigo:200, mensaje:'Peli borrada'}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"La peli no existe"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.delete("/peliculas/actor",
+
+ function(req,res){
+     let respuesta;
+     let idM = req.body.idM;
+     let idA = req.body.idA;
+         if(arrPelis[idM].actors[idA]!=null){
+             arrPelis[idM].actors.splice([idA],1)
+             
+ 
+             respuesta={error:false, codigo:200, mensaje:'actor borrado'}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"El actor no existe"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+ app.delete("/peliculas/director",
+
+ function(req,res){
+     let respuesta;
+     let id = req.body.id;
+         if(arrPelis[id].director!=null){
+             arrPelis[id].director=null
+             
+ 
+             respuesta={error:false, codigo:200, mensaje:'Peli borrada'}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"La peli no existe"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+ app.delete("/peliculas/guionista",
+
+ function(req,res){
+     let respuesta;
+     let id = req.body.id;
+         if(arrPelis[id].guionista!=null){
+             arrPelis[id].guionista = null
+ 
+             respuesta={error:false, codigo:200, mensaje:'Peli borrada'}
+ 
+         }else{
+             respuesta = {error: true, codigo: 200, mensaje:"La peli no existe"}
+         }
+     
+     res.send(respuesta)
+ }
+ );
+
+
 app.listen(3000);
