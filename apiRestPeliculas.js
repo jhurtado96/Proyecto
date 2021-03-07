@@ -613,5 +613,8 @@ app.put("/peliculas",
  }
  );
 
+ const fs = require("fs")
+ let ficherito1 = JSON.stringify(arrPelis)
+ fs.writeFileSync("apiRestPeliculas.json",ficherito1)
 
 app.listen(3000);

@@ -206,7 +206,9 @@ function(req,res){
     res.send(respuesta)
 }
 );
-
+const fs = require("fs")
+let fichero = JSON.stringify(arrProf)
+fs.writeFileSync("apiRestProfessional.json",fichero)
 app.listen(3000);
 
 

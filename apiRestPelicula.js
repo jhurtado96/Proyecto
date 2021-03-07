@@ -591,6 +591,8 @@ app.post("/pelicula",
  
 
 
-
+ const fs = require("fs")
+ let ficherito = JSON.stringify(peli5)
+ fs.writeFileSync("apiRestPelicula.json",ficherito)
 app.listen(3000);
 
