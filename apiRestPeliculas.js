@@ -1,3 +1,4 @@
+const fs = require("fs")
 class Professional
 {
 
@@ -78,13 +79,17 @@ let peli5=null
 let peliculita = null
 
 let arrProf = [pro1,pro2,pro3,pro4,pro5]
-let arrPelis = [peli1,peli2,peli3]
+// let arrPelis = [peli1,peli2,peli3]
+
+let arrPelis = JSON.parse(fs.readFileSync("apiRestPeliculas.json"))
+
 
 
 
 
 const express = require("express");
 const { response } = require('express');
+const { json } = require("body-parser");
  
 const app = express();
 
@@ -114,8 +119,10 @@ function (req,res)
         
     }
     res.send(respuesta); 
-    
-    
+
+
+    let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
         
 } 
 )
@@ -139,7 +146,8 @@ function (req,res)
         
     }
     res.send(respuesta); 
-    
+    let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
     
         
 } 
@@ -164,6 +172,8 @@ function (req,res)
         
     }
     res.send(respuesta); 
+    let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
     
     
         
@@ -191,6 +201,8 @@ function (req,res)
     }
     res.send(respuesta); 
     
+    let nuevo = JSON.stringify(arrPelis);
+    fs.writeFileSync("apiRestPeliculas.json",nuevo);
     
         
 } 
@@ -226,6 +238,8 @@ app.post("/peliculas",
                 }
             
             res.send(respuesta)
+            let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
         }
  );
 
@@ -258,6 +272,8 @@ app.post("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
 );
 
@@ -290,6 +306,8 @@ function(req,res){
         }
     
     res.send(respuesta)
+    let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
 }
 );
 app.post("/peliculas/guionista",
@@ -321,6 +339,8 @@ function(req,res){
         }
     
     res.send(respuesta)
+    let nuevo = JSON.stringify(arrPelis);
+    fs.writeFileSync("apiRestPeliculas.json",nuevo);
 }
 );
 
@@ -375,6 +395,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -429,6 +451,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -482,6 +506,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -535,6 +561,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -554,6 +582,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -574,6 +604,8 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
@@ -593,14 +625,17 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+        fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
+ 
  );
  app.delete("/peliculas/guionista",
 
  function(req,res){
      let respuesta;
      let id = req.body.id;
-         if(arrPelis[id].guionista!=null){
+         if(newArray[id].guionista!=null){
              arrPelis[id].guionista = null
  
              respuesta={error:false, codigo:200, mensaje:'Peli borrada'}
@@ -610,11 +645,12 @@ app.put("/peliculas",
          }
      
      res.send(respuesta)
+     let nuevo = JSON.stringify(arrPelis);
+     fs.writeFileSync("apiRestPeliculas.json",nuevo);
  }
  );
 
- const fs = require("fs")
- let ficherito1 = JSON.stringify(arrPelis)
- fs.writeFileSync("apiRestPeliculas.json",ficherito1)
+ 
+ 
 
 app.listen(3000);
